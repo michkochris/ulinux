@@ -2,7 +2,7 @@
 #
 #
 # uports: a universal linux/gnu ports collection
-. ./uports-config && PATH=$tpath
+. ./ulinux-config && PATH=$tpath
 
 pkgname=utoolscross-glibc
 pkgver=2.38
@@ -20,18 +20,24 @@ cd $src
 if [ ! -f glibc-2.38.tar.xz ]; then wget $sources; fi
 tar -xvf glibc-2.38.tar.xz
 cd glibc-$pkgver
-mkdir -pv build && cd build
 
-../configure --prefix=$utools	      \
-             --host=$crosstarget      \
-             --with-headers=$utools/include \
-             --libdir=$utools/lib     \
-             --libexecdir=$utools/lib
+ln -sfv ../lib/ld-linux-x86-64.so.2 $ulinux/lib64
+ln -sfv ../lib/ld-linux-x86-64.so.2 $ulinux/lib64/ld-lsb-x86-64.so.3
+mkdir build && cd build
+echo "rootsbindir=/usr/sbin" > configparms
+../configure			\
+	--prefix=/usr		\
+	--host=$crosstarget	\
+	--build=$(../scripts/config.guess) \
+	--enable-kernel=4.19	\
+	--with-headers=$ulinux/usr/include \
+	--disable-nscd		\
+	libc_cv_slibdir=/usr/lib
 
 make -j$(nproc)
-make install DESTDIR=$installdir || exit $?
+make install install-headers DESTDIR=$ulinux || exit $?
 
-defaultpackager
+#defaultpackager
 cd $src && rm -rf glibc-$pkgver
-cd $pkgdir && dpkg --force-all -i $fullpkgname.deb
+#cd $pkgdir && dpkg --force-all -i $fullpkgname.deb
 # end of file

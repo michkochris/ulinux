@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+#
+#
+#
+#
+# uports: a universal linux/gnu ports collection
+#. ./ulinux-config && PATH=$tpath
+
+rm -rfv /ulinux /utools /utoolscross /mnt/ulinux/
+dpkg -r utoolscross-binutils utoolscross-gcc utoolscross-linux-headers utoolscross-glibc
+rm -rf /ulinux
+# end of file

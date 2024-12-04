@@ -20,46 +20,45 @@ utarget="x86_64-u-linux-gnu"
 utarget32="i686-u-linux-gnu"
 utargetx32="x86_64-u-linux-gnux32"
 
-uports="/mnt/uports"
-src="$uports/sources"
-root="/"
-system="$uports/ulinux"
-tools="$system/utools"
-crosstools="$system/utoolscross"
-utools="/utools"
-utoolscross="/utoolscross"
-ulinux="/ulinux"
-tpath="$utoolscross/bin:$utools/bin:$ulinux/bin:$PATH"
-upath="$utoolscross/bin:$utools/bin:$ulinux/bin:"
-pkgdir="$uports/pkgs"
-staging="$uports/staging"
-installdir="$uports/install"
+system=/mnt/ulinux
+ulinux=/ulinux
+uports=$system/uports
+src=$system/sources
+tools=/mnt/ulinux/utools
+crosstools=/mnt/ulinux/utoolscross
+utools=/utools
+utoolscross=/utoolscross
+tpath=$utoolscross/bin:$utools/bin:$ulinux/bin:$PATH
+upath=$utoolscross/bin:$utools/bin:$ulinux/bin:
+pkgdir=$system/pkgs
+staging=$system/staging
+installdir=$system/install
 
-if [ ! -d $uports ]; then mkdir -pv $uports; fi
-if [ ! -d $src ]; then mkdir -pv $src; fi
 if [ ! -d $system ]; then mkdir -pv $system; fi
+if [ ! -d $src ]; then mkdir -pv $src; fi
+if [ ! -d $uports ]; then mkdir -pv $uports; fi
 if [ ! -d $tools ]; then mkdir -pv $tools; fi
 if [ ! -d $crosstools ]; then mkdir -pv $crosstools; fi
 if [ ! -d $pkgdir ]; then mkdir -pv $pkgdir; fi
 if [ ! -d $staging ]; then mkdir -pv $staging; fi
 if [ ! -d $installdir ]; then mkdir -pv $installdir; fi
-if [ ! -e "$utools" ]; then  ln -sv $tools / ; fi
-if [ ! -e "$utoolscross" ]; then  ln -sv $crosstools / ; fi
-if [ ! -e "$ulinux" ]; then  ln -sv $system / ; fi
-if [ -d $uports ]; then echo $uports; fi
+if [ ! -e $ulinux ]; then  ln -sv $system / ; fi
+if [ ! -e $utools ]; then  ln -sv $tools / ; fi
+if [ ! -e $utoolscross ]; then  ln -sv $crosstools / ; fi
 if [ -d $system ]; then echo $system; fi
 if [ -d $src ]; then echo $src; fi
+if [ -d $uports ]; then echo $uports; fi
 if [ -d $tools ]; then echo $tools; fi
 if [ -d $crosstools ]; then echo $crosstools; fi
 if [ -d $pkgdir ]; then echo $pkgdir; fi
 if [ -d $staging ]; then echo $staging; fi
 if [ -d $installdir ]; then echo $installdir; fi
+if [ -e "$ulinux" ]; then  ls -l $ulinux; fi
 if [ -e "$utools" ]; then  ls -l $utools; fi
 if [ -e "$utoolscross" ]; then  ls -l $utoolscross; fi
-if [ -e "$ulinux" ]; then  ls -l $ulinux; fi
+if [ ! -e "$ulinux" ]; then  echo "Warning: $ulinux symlink is broken";exit 1; fi
 if [ ! -e "$utools" ]; then  echo "Warning: $utools symlink is broken";exit 1; fi
 if [ ! -e "$utoolscross" ]; then  echo "Warning: $utoolscross symlink is broken";exit 1; fi
-if [ ! -e "$ulinux" ]; then  echo "Warning: $ulinux symlink is broken";exit 1; fi
 echo "NORMAL PATH= $PATH"
 echo "tpath= $tpath"
 

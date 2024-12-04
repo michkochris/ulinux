@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+#
+#
+#
+#
+# uports: a universal linux/gnu ports collection
+. ./ulinux-config && PATH=$tpath
+
+echo 'int main(){}' | $crosstarget-gcc -xc -
+readelf -l a.out | grep ld-linux
+rm -v a.out
+# end of file

@@ -25,20 +25,21 @@ if [ ! -f binutils-2.41.tar.xz ]; then wget $sources; fi
 tar -xvf binutils-2.41.tar.xz
 cd binutils-$pkgver
 mkdir -v ../binutils-build && cd ../binutils-build
-../binutils-$pkgver/configure \
-		--prefix=$utoolscross	\
-		--target=$crosstarget   \
-		--with-sysroot=$ulinux	\
+../binutils-$pkgver/configure		\
+		--prefix=/usr		\
+		--build=$(../config.guess) \
+		--host=$crosstarget	\
 		--disable-nls		\
+		--enable-shared		\
 		--enable-gprofng=no	\
 		--disable-werror	\
 		--enable-new-dtags	\
+		--enable-64-bit-bfd	\
 		--enable-default-hash-style=gnu \
 		--enable-install-libiberty	\
-		--with-lib-path=/ulinux/lib:/ulinux/lib32
 
 make -j$(nproc)
-make install #DESTDIR=$installdir || exit $?
+make install DESTDIR=$ulinux || exit $?
 
 #defaultpackager
 cd $src && rm -rf binutils-$pkgver binutils-build
