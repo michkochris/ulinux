@@ -4,7 +4,7 @@
 #
 #
 #
-# uports: a universal linux/gnu ports collection
+# ulinux: a simple and universal linux distribution...
 . ./ulinux-config && PATH=$tpath
 
 pkgname=

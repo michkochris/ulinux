@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 #
-# delete all other dirs!
-# #find . -maxdepth 1 ! -name $installdir/utoolscross/lib32 -type d -not -path '.' -exec rm -rf {} +
 #
-# fix dpkg pager problem
-# ln -sv /usr/bin/less /usr/bin/pager
-#
-# uports: a universal linux/gnu ports collection: GPLV3
+# ulinux: a simple and universal linux distribution...
 
 cwd=$(pwd)
-build=$(echo ${MACHTYPE} | sed -e 's/-[^-]*/-build_pc/')
+BUILD=$(echo ${MACHTYPE} | sed -e 's/-[^-]*/-build_pc/')
 toolstarget="x86_64-tools-linux-gnu"
 toolstarget32="i686-tools-linux-gnu"
 toolstargetx32="x86_64-tools-linux-gnux32"
@@ -59,8 +54,8 @@ if [ -e "$utoolscross" ]; then  ls -l $utoolscross; fi
 if [ ! -e "$ulinux" ]; then  echo "Warning: $ulinux symlink is broken";exit 1; fi
 if [ ! -e "$utools" ]; then  echo "Warning: $utools symlink is broken";exit 1; fi
 if [ ! -e "$utoolscross" ]; then  echo "Warning: $utoolscross symlink is broken";exit 1; fi
-echo "NORMAL PATH= $PATH"
-echo "tpath= $tpath"
+#echo "NORMAL PATH= $PATH"
+#echo "tpath= $tpath"
 
 function minimaldebcontrol {
 echo "uports: required minimal dpkg control fields are"

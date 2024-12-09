@@ -5,13 +5,13 @@
 # check ld search path
 # ld --verbose | grep SEARCH_DIR | tr -s ' ;' \\012
 #
-# uports: a universal linux/gnu ports collection
+# ulinux: a simple and universal linux distribution...
 . ./ulinux-config && PATH=$tpath
 
 pkgname=utoolscross-binutils
 pkgver=2.41
 pkgrel=1
-maintainer="linuxchrist@gmail.com"
+maintainer="michkochris@gmail.com"
 description="contains a linker, an assembler, and other tools for handling object files."
 homepage="https://www.gnu.org/software/binutils/"
 sources="https://sourceware.org/pub/binutils/releases/binutils-2.41.tar.xz"

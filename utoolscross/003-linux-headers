@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
 #
-# uports: a universal linux/gnu ports collection
+# ulinux: a simple and universal linux distribution...
 . ./ulinux-config && PATH=$tpath
 
 pkgname=utoolscross-linux-headers
 pkgver=6.6.3
 pkgrel=1
-maintainer="linuxchrist@gmail.com"
+maintainer="michkochris@gmail.com"
 description="expose the kernel's API for use by Glibc."
 homepage="https://www.kernel.org/"
 sources="https://www.kernel.org/pub/linux/kernel/v6.x/linux-6.6.3.tar.xz"
@@ -29,13 +29,13 @@ cd linux-$pkgver
 #make ARCH=x86_64 headers
 #make ARCH=x86_64 INSTALL_HDR_PATH=$installdir/ulinux headers_install
 
-mkdir -pv /ulinux/{lib,lib32,libx32}
-ln -sv . /ulinux/usr
-ln -sv . /ulinux/local
-ln -sv lib /ulinux/lib64
+mkdir -pv /utools/{lib,lib32,libx32,local}
+ln -sv . /utools/usr
+ln -sv . /utools/local
+ln -sv lib /utools/lib64
 make mrproper
 make headers
-make INSTALL_HDR_PATH=/ulinux headers_install
+make INSTALL_HDR_PATH=/utools headers_install
 
 #defaultpackager
 cd $src && rm -rf linux-$pkgver

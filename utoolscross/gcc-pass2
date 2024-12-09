@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
 #
-# initial temporary gcc build
 #
-# gcc 1st phaze disable libs
-# gcc 2nd phaze not disable libs
-# gcc 3rd phase enable libs
-# uports: a universal linux/gnu ports collection
+# ulinux: a simple and universal linux distribution...
 . ./ulinux-config && PATH=$tpath
 
 pkgname=utoolscross-gcc
 pkgver=13.2.0
 pkgrel=1
-maintainer="linuxchrist@gmail.com"
+maintainer="michkochris@gmail.com"
 description="contains the GNU compiler collection, which includes the C and C++ compilers."
 homepage="https://gcc.gnu.org/"
 sources="https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz"

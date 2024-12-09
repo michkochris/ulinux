@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 #
 #
-#
-#
-#
-# uports: a universal linux/gnu ports collection
+# ulinux: a simple and universal linux distribution...
 . ./ulinux-config && PATH=$tpath
 
 echo 'int main(){}' | $crosstarget-gcc -xc -

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 #
 #
-# uports: a universal linux/gnu ports collection
+# ulinux: a simple and universal linux distribution...
 . ./ulinux-config && PATH=$tpath
 
 pkgname=utoolscross-glibc
 pkgver=2.38
 pkgrel=1
-maintainer="linuxchrist@gmail.com"
+maintainer="michkochris@gmail.com"
 description="the main C library. 64 bit abi"
 homepage="https://www.gnu.org/software/libc/"
 sources="https://ftp.gnu.org/gnu/glibc/glibc-2.38.tar.xz"
@@ -21,21 +21,19 @@ if [ ! -f glibc-2.38.tar.xz ]; then wget $sources; fi
 tar -xvf glibc-2.38.tar.xz
 cd glibc-$pkgver
 
-ln -sfv ../lib/ld-linux-x86-64.so.2 $ulinux/lib64
-ln -sfv ../lib/ld-linux-x86-64.so.2 $ulinux/lib64/ld-lsb-x86-64.so.3
 mkdir build && cd build
 echo "rootsbindir=/usr/sbin" > configparms
 ../configure			\
 	--prefix=/usr		\
+	--build=$BUILD		\
 	--host=$crosstarget	\
-	--build=$(../scripts/config.guess) \
 	--enable-kernel=4.19	\
-	--with-headers=$ulinux/usr/include \
+	--with-headers=$utools/usr/include \
 	--disable-nscd		\
 	libc_cv_slibdir=/usr/lib
 
 make -j$(nproc)
-make install install-headers DESTDIR=$ulinux || exit $?
+make install install-headers DESTDIR=$utools || exit $?
 
 #defaultpackager
 cd $src && rm -rf glibc-$pkgver
