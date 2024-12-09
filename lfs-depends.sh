@@ -2,7 +2,7 @@
 # A script to list version numbers of critical development tools
 
 apt update
-apt install coreutils bash binutils bison diffutils findutils gawk gcc g++ grep gzip m4 file \
+apt install coreutils bash binutils bison diffutils findutils gawk gcc g++ grep gzip m4 file autoconf automake libtool-bin \
 make patch perl python3 sed tar texinfo xz-utils byacc libgmp-dev libmpc-dev libmpfr-dev libisl-dev zlib1g-dev zstd rsync
 
 ln -sf bash /bin/sh

@@ -13,7 +13,7 @@ homepage="https://gcc.gnu.org/"
 sources="https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.xz https://ftp.gnu.org/gnu/gmp/gmp-6.3.0.tar.xz https://ftp.gnu.org/gnu/mpfr/mpfr-4.2.1.tar.xz https://ftp.gnu.org/gnu/mpc/mpc-1.3.1.tar.gz"
 arch=amd64
 depends=
-comment="uports: a universal linux/gnu ports collection"
+comment="ulinux: a simple and universal linux distribution..."
 checkpkginfo
 
 cd $src
